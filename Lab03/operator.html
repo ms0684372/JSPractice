@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>運算子</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      //算術運算子
+      //+號
+      result = 1 + 2 + 3;
+      result = 1 + 2 + "3"; //33
+      result = "1" + 2 + 3; //123
+      // result = 1 + NaN; //NaN
+      console.log(result);
+      console.log(typeof result);
+
+      let a = 123;
+      a += ""; //這是在轉成字串, 不建議這樣寫, 會讓不懂js的覺得莫名其妙
+      console.log(a);
+
+      //-號
+      let aa;
+      aa = 100 - 5; //95
+      aa = 100 - "5"; //95  純數字會偷轉
+      aa = 100 - "a"; //NaN
+      aa = "100" - "10"; //90 一樣被轉成數字
+      aa = "ppa" - "pp"; //NaN
+      console.log(aa);
+      console.log(typeof result);
+
+      let b = "99";
+      b = b - 0;
+      console.log(typeof b); //會被轉成number, 依舊讓人摸不著頭緒的寫法
+
+      /*
+        遞增 遞減
+        ++a a++
+        都會+1
+        ++a 先加再取
+        a++ 先取再加
+      */
+
+      let a1 = 0,
+        a2;
+      a2 = ++a1;
+      console.log("a1:" + a1 + " a2:" + a2);
+
+      let b1 = 0,
+        b2;
+      b2 = b1++;
+      console.log("b1:" + b1 + " b2:" + b2);
+
+      // 邏輯運算子
+      /*
+        && AND
+          第一個值true 返回第二個值
+          第一個值false 直接返回第一個值
+        || OR
+          第一個值true 返回第一個值
+          第一個值false 直接返回第二個值
+        ! NOT
+      */
+      let bResult = true && false;
+      result = 5 && 6; //6
+      result = 0 && 6; //0
+      result = 5 || 6; //5
+      result = 0 || 6; //6
+      result = "" || "hello"; //hello
+      result = -1 || "hello"; //-1 記這個
+      console.log(result);
+
+      //指派運算子
+      /*
+        += -= *= /=
+      */
+      let c = 10;
+      c = c + 5;
+      c += 5;
+
+      //比較運算子
+      /*
+        > <
+        >= <=
+        == ===
+        != !==
+      */
+      let d = 1 == 1; //true
+      d = 1 == "1"; //true
+      d = 1 == true; //true
+      d = 1 === "1"; //false 嚴格相等 比較資料型別!
+      d = "a" < "b"; //true
+      d = "陳" > "張"; //true
+      console.log("d:" + d);
+
+      //任何東西跟nan比都是false
+      let e = 123 > NaN; //false
+      e = NaN == NaN; //false
+      e = NaN === NaN; //false
+      //isNaN() 判斷是否為NaN
+      e = NaN;
+      console.log("e:" + e);
+      console.log(isNaN(e)); //true
+
+      //三元運算子
+      /*
+        (條件) ? 語句1 : 語句2
+        條件為true 走1 否則2
+      */
+      let f = 30;
+      let g = 40;
+      let max = e > f ? e : f;
+      let h = 20;
+      max = f > g ? (h > f ? h : f) : h > g ? h : g;
+      console.log("max:" + max);
+    </script>
+  </body>
+</html>
