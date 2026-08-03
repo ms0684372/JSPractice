@@ -4,6 +4,7 @@
 //   return a + b;
 // }
 
+//預設匯出
 export default function greeting(name){
   return "hello " + name;
 }
