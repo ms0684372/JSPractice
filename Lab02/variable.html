@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>變數</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      //javascript code
+      /*
+        var
+          可重複宣告
+          全域範圍
+            function會被限制
+      */
+
+      var a; //宣告
+      console.log(a);
+      a = 123; //指派 賦值
+      console.log(a);
+      var b = "123";
+      var a = "456";
+      console.log(a);
+
+      //草尼瑪  生命週期有夠怪
+      if (true) {
+        var i = 6;
+      }
+      console.log("i:" + i);
+      i = 5;
+
+      if (true) {
+        var i = 6;
+      }
+      console.log(i);
+
+      /*
+        let
+      */
+      let c = "javascript";
+      if (true) {
+        let j = 6;
+      }
+      // console.log(j);  //會報錯
+
+      //const
+      const AAFunc = function () {
+        console.log("aa");
+      };
+      const SQL = "SELECT * FROM tableName";
+
+      let str = "javascript";
+      let str1 = "javascript";
+      let str2 = "java\nscript";
+      let str3 = "He's Hero";
+      let str4 = str1 + str2;
+      console.log(str4);
+      let str5 = `javascript ${str3}`;
+      console.log(str5);
+
+      //Number
+      let abc = 123;
+      console.log(typeof abc);
+      console.log(typeof str);
+      let e = str1 * str2;
+      console.log(e); //NaN not a number
+      console.log(typeof e); //他會是number喔
+      console.log(Number.MAX_VALUE * Number.MAX_VALUE); //Infinity
+      console.log(10 / 0); //Infinity
+      //2進制去算 浮點數運算會得到結果
+      console.log(0.2 * 3 == 6); //false
+      console.log(0.2 * 3); //0.600000000001 只能用四捨五入之類的
+
+      /*
+      Boolean
+        轉換Boolean()
+          使用Boolean()
+      */
+      var bValue = 123; //true
+      bValue = -123; //false
+      bValue = 0; //false
+      bValue = "一二三"; //true
+      bValue = ""; //空字串 false
+      bValue = " "; //空格字串 true
+      bValue = undefined; //false
+      bValue = NaN; //false
+      bValue = null; //false
+
+      console.log(Boolean(bValue));
+    </script>
+  </body>
+</html>
