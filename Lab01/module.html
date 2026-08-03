@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Module</h1>
+    </header>
+    <div class="container"></div>
+    <script type="module">
+      //對應的匯入
+      //命名匯入
+      // import { a, add } from "./module.js";
+      // console.log(a);
+      // console.log(add(1, 1));
+
+      //對應的匯入
+      import cc from "./module.js";
+      console.log(cc("apple"));
+    </script>
+  </body>
+</html>
