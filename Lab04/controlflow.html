@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>流程控制</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      //if
+      if (true) {
+        //true時執行
+      } else if (10 > 0) {
+        //次要條件成立時執行
+      } else {
+        //false時執行
+      }
+
+      //敘述只有一行時可以這樣寫 不建議
+      let a = 10;
+      if (a > 9) console.log("大");
+
+      //if else NG寫法 判斷順序怪怪的，且條件不夠明確
+      let x = 30;
+      if (x >= 10) {
+        console.log("x>=10");
+      } else if (x >= 20) {
+        console.log("x>=20");
+      } else {
+        console.log("其他");
+      }
+
+      if (x < 30 && x >= 20) {
+        console.log("x>=10");
+      } else if (x >= 10 && x < 20) {
+        console.log("x>=20");
+      } else {
+        console.log("其他");
+      }
+
+      //switch
+      let num = "1";
+      switch (num) {
+        //num === 1 嚴格相等
+        case 1:
+          console.log("num=1");
+          break;
+        case 2:
+          console.log("num=2");
+          break;
+        case 3:
+          console.log("num=3");
+          break;
+        default:
+          console.log("num = other");
+      }
+      console.log("bbbb" + (1 === "1")); //false
+
+      let score = 60;
+      switch (score / 10) {
+        case 10:
+        case 9:
+        case 8:
+        case 7:
+        case 6:
+          console.log("及格");
+          break;
+        default:
+          console.log("不及格");
+      }
+
+      //重複結構
+      // while
+      // document.write() 頁面新增文字
+      document.write("123456\n");
+      document.writeln("123456");
+      let n = 1;
+      while (n < 10) {
+        document.write(n++ + "<br>");
+      }
+
+      /*
+        投資年利率8% 1000成長 10000 多少年
+        第一年 1000+1000*0.08
+        第二年 1080+1080*0.08
+      */
+      let current = 1000;
+      let year = 0;
+      let interestRate = 0.08;
+      let target = 10000;
+      while (current < target) {
+        //兩種算法一樣
+        current += current * interestRate;
+        // current *= 1 + interestRate;
+        year++;
+      }
+      console.log(`金額: ${current}, 利率:${interestRate}, 年份:${year}`);
+
+      //for
+    </script>
+  </body>
+</html>
