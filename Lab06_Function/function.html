@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>函數 function</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      /*
+        function 也是個物件
+          封裝程式碼 在需要時調用
+          封裝程式碼不會立即執行
+      */
+
+      let b1 = !true;
+      let b2 = !true;
+      let b3 = !true;
+      let b4 = !true;
+      let b5 = true;
+
+      //函數創建方式1 此方法會變成全域的, 要變區域就得用2
+      if (b1) {
+        function fun1() {
+          console.log("hello1");
+        }
+        //調用 function名稱+()
+        fun1();
+      }
+
+      //函數創建方式2
+      if (b2) {
+        let fun2 = function () {
+          console.log("hello2");
+        };
+        fun2();
+      }
+
+      //函數創建方式3 (不建議此方法)
+      if (b3) {
+        let fun3 = new Function("console.log('hello3')");
+        fun3();
+      }
+
+      //參數
+      if (b4) {
+        function sum(x, y) {
+          console.log(x);
+          console.log(y);
+          console.log(x + y);
+        }
+        sum(1, 2);
+        sum("1a", 2);
+        sum(1, 2, 3); //3就變成沒作用 多餘的
+        sum(1); //y會變成undefined NaN
+
+        function sayHello(name, age, gender, address) {
+          console.log(`我是${name}, ${age}歲, 性別:${gender}, 地址:${address}`);
+        }
+        sayHello("apple", 18, "男", "台北");
+        sayHello("apple", "男", 18, "台北");
+
+        function sayHello2(obj) {
+          console.log(
+            `我是${obj.name}, ${obj.age}歲, 性別:${obj.gender}, 地址:${obj.address}`,
+          );
+        }
+        sayHello2({
+          name: "apple",
+          age: 18,
+          gender: "男",
+          address: "台北",
+        });
+      }
+
+      //回傳值
+      if (b5) {
+        let sum2 = function (x, y) {
+          return x + y;
+        };
+
+        let rSum2 = sum2(3, 9);
+        console.log(rSum2);
+      }
+
+      /*
+        立即執行函數
+        IIFE
+        Immediately Invoked Function Expression
+        用()包住整體函數, 只會執行一次
+      */
+      (function () {
+        console.log("IIFE");
+      })();
+
+      (function (a, b) {
+        console.log(a);
+        console.log(b);
+      })("apple", "banana");
+      var a = "gary";
+
+      (function () {
+        var apple = "garyB";
+      })();
+      console.log(apple);
+    </script>
+  </body>
+</html>
