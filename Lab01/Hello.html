@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <h1>JavaScript</h1>
+    </header>
+    <div class="container">
+      <!-- 第二個 寫在標籤內 -->
+      <!-- 不建議寫在標籤內，不易維護(結構和行為高度耦合) -->
+      <button onclick="console.log('hello JavaScript2')">hello2</button>
+      <a href="javascript:console.log('hello javascript3')">hello3</a>
+    </div>
+
+    <!-- ES6 模組化 -->
+    <script type="module"></script>
+    <script src="./outside.js">
+      //一旦讀取外部js 就不要寫js  這範圍內寫得不會執行
+      console.log('內部js');
+    </script>
+    <script>
+      //第一個
+      console.log("hello JavaScript");
+    </script>
+  </body>
+</html>
