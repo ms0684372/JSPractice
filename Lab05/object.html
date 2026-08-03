@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Object 物件</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      let b1 = false;
+      let b2 = false;
+      let b3 = true;
+
+      //第一種創建物件方法
+      if (b1) {
+        let obj = new Object();
+        //物件設定或修改屬性名稱跟值
+        obj.name = "Gary";
+        obj.age = 19;
+
+        //刪除物件屬性
+        delete obj.name;
+
+        console.log(obj);
+
+        // 讀取該物件的屬性
+        console.log(obj.name);
+
+        // 物件屬性名稱不像變數名稱有強制規定 (不要亂取保留字)
+        obj.let = "hello";
+
+        //強制屬性名稱命名 object
+        obj["123"] = "一二三";
+        console.log(obj["123"]);
+
+        //屬性的值 可以是任意值
+        obj.test = true;
+        obj.test = null;
+        obj.test = function () {};
+        obj.test = [];
+      }
+
+      //第二種創建物件方法 (最常用的)
+      if (b2) {
+        let obj2 = {
+          name: "Apple",
+          gender: "男",
+          age: 18,
+          pet: { animal: "cat", name: "lemon" },
+          interest: ["running", "coding"],
+          greeting: function () {
+            return "hello";
+          },
+        };
+        console.log(`obj2.name:${obj2.name}`);
+        console.log(`obj2.animal:${obj2.pet["animal"]}`);
+        console.log(obj2.interest[1]);
+        console.log(obj2.greeting());
+
+        //in 檢查物件是否有該屬性
+        console.log("age" in obj2);
+        console.log("age2" in obj2);
+      }
+
+      if (b3) {
+        //ex1
+        let a = 123;
+        let b = a;
+        a++;
+        console.log("a:" + a); //124
+        console.log("b:" + b); //123
+
+        //ex2
+        let objA = {};
+        objA.name = "apple";
+        let objB = objA;
+        objB.name = "orange";
+
+        console.log("objB:" + objB.name); //orange
+        console.log("objA:" + objA.name); //orange
+
+        //ex3
+        let objC = {};
+        let objD = {};
+        objC.name = "Gary";
+        objD.name = "Gary";
+        console.log(objC == objD); //false
+        console.log(objC.name == objD.name); //true
+        console.log(objC.name === objD.name); //true
+      }
+    </script>
+  </body>
+</html>
