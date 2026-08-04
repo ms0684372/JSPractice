@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>DomNode</h1>
+    </header>
+    <div class="container">
+      <ul id="city">
+        <li>台北</li>
+        <li id="tyn"><span style="display: none">秘密</span>桃園</li>
+        <li>台中</li>
+        <li>台南</li>
+        <li>高雄</li>
+      </ul>
+      <hr />
+      <button id="btnTynGet">取得#tyn文字內容</button>
+      <button id="btnTynSet">修改#tyn文字內容</button>
+      <hr />
+      <button id="btnListLi">找出所有li元素 並log</button>
+      <hr />
+      <button id="btnAppend">新增元素append</button>
+      <button id="btnPrepend">新增元素prepend</button>
+      <hr />
+      <button id="btnRemove">刪除元素Remove</button>
+    </div>
+    <script>
+      let btnTynGet = document.getElementById("btnTynGet");
+      let tyn = document.getElementById("tyn");
+
+      btnTynGet.addEventListener("click", () => {
+        // innerText 使用者看得到文字 (不會顯示"秘密")
+        console.log(tyn.innerText);
+
+        // textContent 會包含隱藏文字
+        console.log(tyn.textContent);
+
+        // innerHtml 取文字 取標籤內所有的內容 所以上面span秘密那段也都會顯示出來
+        console.log(tyn.innerHTML);
+      });
+
+      let btnTynSet = document.getElementById("btnTynSet");
+      btnTynSet.addEventListener("click", () => {
+        tyn.innerText = "123";
+        // tyn.textContent = "456";
+
+        //設定標籤 不建議這樣寫, xss攻擊風險 更改html
+        // tyn.innerHTML = "<h1>js</h1>";
+      });
+
+      //找出所有li元素 並log
+      let btnListLi = document.getElementById("btnListLi");
+      let liList = document.getElementsByTagName("li");
+
+      btnListLi.onclick = function () {
+        for (let li of liList) {
+          console.log(li.innerText);
+        }
+      };
+
+      /*
+        append(element, element...) 插入元素 可插入多個元素
+        加在最後
+        document.createElement(元素標籤)新增元素
+      */
+      let ul = document.getElementById("city");
+      let btnAppend = document.getElementById("btnAppend");
+      btnAppend.addEventListener("click", () => {
+        let li = document.createElement("li");
+        // li.innerText = "台東";
+        li.textContent = "台東"; //推薦這個
+        //父元素
+        ul.append(li);
+      });
+
+      /*
+        prepend 加在最前面
+      */
+      let btnPrepend = document.getElementById("btnPrepend");
+      btnPrepend.addEventListener("click", function () {
+        let li = document.createElement("li");
+        li.textContent = "基隆";
+        ul.prepend(li);
+      });
+
+      //Remove
+      let btnRemove = document.getElementById("btnRemove");
+      btnRemove.addEventListener("click", function () {
+        tyn.remove(); //直接刪掉tyn  ban不見
+      });
+    </script>
+  </body>
+</html>
