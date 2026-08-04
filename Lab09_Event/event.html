@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+    <script>
+      //onload會在頁面載入完成之後才執行
+      window.onload = function () {
+        //寫在這邊會成功 但不建議, 還是寫下面吧  寫上面就扁你
+      };
+
+      // 會壞掉喔 這個因為跟底下body內容有關, 會壞掉, 真想要  就丟上面的onload
+      // let btn99 = document.getElementById("btn99");
+      // btn2.onclick = function () {
+      //   console.log("click button99");
+      // };
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>綁定事件 event</h1>
+    </header>
+    <div class="container">
+      <!--第一種綁定方式 不建議 -->
+      <button onclick="console.log('click button1')">button1</button>
+
+      <button id="btn2">button2</button>
+      <button id="btn3">button3</button>
+      <button id="btn99">button99</button>
+    </div>
+    <script>
+      //第二種綁定方式 只會綁一個 (畢竟是用等於去指派嘛)
+      let btn2 = document.getElementById("btn2");
+      //不能用+=
+      btn2.onclick = function () {
+        console.log("click button2");
+        console.log(this); //觸發者 btn2
+      };
+
+      // btn2.onclick = () => {
+      //   console.log("click button2");
+      //   console.log(this);  //這邊居然變window
+      // };
+
+      // 第三種綁定方式 可綁多個
+      // addEventListener('事件名稱', 函數)
+      let btn3 = document.getElementById("btn3");
+      btn3.addEventListener("click", function () {
+        console.log("click button3-1");
+      });
+
+      btn3.addEventListener("click", () => {
+        console.log("click button3-2");
+      });
+    </script>
+  </body>
+</html>
