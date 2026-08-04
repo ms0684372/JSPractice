@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>原型物件Prototype Object</h1>
+    </header>
+    <div class="container"></div>
+    <script type="module">
+      import person from "./prototype.js";
+      let per = new person("aa", 18, "male");
+      console.log(per);
+    </script>
+
+    <!-- <script>
+      function createPerson(name, age, gender) {
+        let obj = {
+          name: name,
+          age: age,
+          gender: gender,
+        };
+        return obj;
+      }
+      let obj1 = createPerson("apple", "25", "male");
+      let obj2 = createPerson("orange", "35", "male");
+      console.log(obj1, obj2);
+
+      /*
+        原型物件 Prototype
+          function保留字依照以下條件
+          1. 第一個字母要大寫
+          2. 不需要寫return
+          3. 建立的物件 用this生成
+          到時候使用new實體化生成物件
+      */
+      function Person(name, age, gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        //每一次new實作就會新增一個函數
+        // this.sayName = function(){
+        //   return 'hello';
+        // }
+        //改寫方法1 但作用範圍上來看 怪怪的
+        this.sayName = fun;
+      }
+      // function fun() {
+      //   return "hello";
+      // }
+      //改寫方法2
+      Person.prototype.sayName = function () {
+        return "hello";
+      };
+
+      //方法3 ES6 class constructor
+      class Animal {
+        constructor(name, age) {
+          this.name = name;
+          this.age = age;
+        }
+
+        sayHi() {
+          console.log("hi");
+        }
+      }
+
+      let person1 = new Person("Haha", 17, "female");
+      let person2 = new Person("Hehe", 67, "female");
+      console.log(person1, person2);
+      // 原型物件新增屬性
+      Person.prototype.address = "台北";
+      console.log(person1, address, person2, address);
+    </script> -->
+  </body>
+</html>
