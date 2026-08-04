@@ -93,6 +93,7 @@
         IIFE
         Immediately Invoked Function Expression
         用()包住整體函數, 只會執行一次
+        貌似可以拿來當封裝的用法
       */
       (function () {
         console.log("IIFE");
@@ -108,6 +109,27 @@
         var apple = "garyB";
       })();
       console.log(apple);
+
+      /*
+        ES6 新增函數寫法
+        箭頭函數
+          1.若本體單行敘述, 可省略{}
+          2.若參數只有一個 可以省略()
+          3.沒有參數 至少要有小括號()
+      */
+      //基本寫法
+      let getTriangle = (base, height) => {
+        return (base * height) / 2;
+      };
+
+      //1.僅單行 甚至可以連return都省略 一樣會回傳
+      let getTriangle2 = (base, height) => (base * height) / 2;
+
+      //2.僅單一參數, 可以省略() (但prettier會自動加 懶得關了)
+      let getCircle = (radius) => radius * radius * Math.PI;
+
+      //3.沒有參數 至少要有小括號()
+      let show = () => console.log("arror function");
     </script>
   </body>
 </html>
