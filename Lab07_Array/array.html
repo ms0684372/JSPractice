@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>陣列Array</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      //JS是zero base!
+      //JS是zero base!
+      //JS是zero base!
+      let b1 = !true;
+      let b2 = !true;
+      let b3 = !true;
+      let b4 = !true;
+      let b5 = !true;
+      let b6 = true;
+
+      //陣列可以任意資料型別 (但不建議 誰當雜物間放 就扁他)
+      let arr = new Array(1, 2, 3, 4);
+      let arr2 = [1, 2, 3, 4, {}, true];
+      if (b1) {
+        console.log("b1");
+        console.log(arr, arr[1]);
+        console.log(arr.length);
+        arr[10] = 99;
+        console.log(arr);
+        console.log(arr[4]);
+        //陣列最後新增資料
+        arr[arr.length] = 100;
+        console.log(arr);
+        arr.name = "apple";
+      }
+
+      //第二種創建陣列方式 直接用中括號
+      if (b2) {
+        console.log("b2");
+
+        arr2.age = 123;
+        console.log(arr2);
+        //陣列方法
+        /*
+        破壞性方法 (會直接影響到陣列內容)
+        pop(): 尾端刪除
+        push(): 尾端新增
+        shift(): 頭端刪除
+        unshift(): 頭端新增
+      */
+
+        arr2.pop();
+        arr2.push("fuen54");
+        arr2.shift();
+        arr2.unshift("javascript");
+        console.log(arr2);
+      }
+
+      //concat()
+      //非破壞性方法 不會對原陣列影響 回傳新陣列
+      if (b3) {
+        console.log("b3");
+
+        let concatArr = arr.concat(arr2);
+        console.log(concatArr);
+        console.log(arr);
+        console.log(arr2);
+      }
+
+      //join() 陣列轉字串 預設,
+      //非破壞性方法 不會對原陣列影響
+      if (b4) {
+        console.log("b4");
+        let str = arr2.join();
+        console.log(str);
+
+        //indexOf
+        //找元素 並回傳索引值, 找不到會回傳-1
+        console.log(arr.indexOf(3)); //2
+        console.log(arr.indexOf(6)); //-1
+      }
+
+      /*
+        slice()
+          從陣列選取指定元素返回
+          1. 參數 開始位置 (包含)
+          2. 參數 結束位置 (不包含)
+            可省略, 會擷取到最後
+          非破壞性方法
+        splice()
+          刪除指定元素並新增
+          1. 參數 開始位置
+          2. 參數 刪除數量
+          3. 參數 傳遞新元素 可省略
+          破壞性方法!
+      */
+      if (b5) {
+        console.log("b5");
+        let arrSlice = arr2.slice(1, 4);
+        console.log(arrSlice);
+        arr2.splice(1, 1, 22);
+        console.log(arr2);
+
+        //forEach(函數)
+        arr.forEach(function (ele, index) {
+          console.log("index=" + index);
+          console.log("element=" + ele);
+        });
+
+        // ES6 解構賦值
+      }
+
+      if (b6) {
+        let arr3 = [1, 2, 3];
+        //一個一個賦值 太繁瑣
+        // let a = arr[0];
+        // let b = arr[1];
+
+        let [a, b, c] = arr3;
+        console.log(a);
+        console.log(b);
+
+        let person = { name: "gary", age: 18 };
+        // let name = person.name;
+        // let age = person.age;
+        let { name, age } = person;
+        console.log(name);
+        console.log(age);
+
+        //剩餘運算符
+        let [x, ...y] = [1, 2, 3, 4];
+        console.log(x);
+        console.log(y);
+
+        //交換變數
+        let a1 = "apple";
+        let a2 = "jerry";
+        // let temp = a1;
+        // a1=a2;
+        // a2=temp;
+        console.log(a1, a2);
+        [a1, a2] = [a2, a1];
+        console.log(a1, a2);
+
+        //函數參數解構
+        function greet({ name, age }) {
+          console.log(`我是${name}, 年齡${age}`);
+        }
+        greet({ age: 18, name: "gary" });
+
+        //陣列合併
+        let arr4 = [...arr, ...arr2];
+        console.log(arr4);
+
+        //物件合併
+        let obj1 = { name: "gary", age: 18, phone: "0900" };
+        let obj2 = { gender: "male", address: "台北", phone: "0978" };
+        let obj3 = { ...obj1, ...obj2 }; //合併時 若同名,下會覆蓋上
+        console.log(obj3);
+      }
+    </script>
+  </body>
+</html>
