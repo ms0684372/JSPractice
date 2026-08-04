@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>正則表達 RegExp</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      /*
+        正則表達式
+          字定義字串規則 驗證語法
+
+        new RegExp("正則表達式規則", "匹配模式")
+        new RegExp(/正則表達式規則/匹配模式)
+        i:忽略大小寫
+        g:全域搜尋
+
+        正則表達式物件.test()
+          此方法來檢查字串是否符合規則, 回傳boolean
+       */
+      let rule1 = new RegExp("a", "i");
+      let rule2 = new RegExp(/a/i);
+
+      /*
+        正則表達式規則
+        a|b|c abc任一字元
+        [abc] abc任一字元
+        [^abc] 除了abc任一字元
+        [a-z] 任意英文字母
+        [0-9] 任意數字
+        {n} n幾次 量詞指對一個字有效
+        {n,m} n-m次
+        + 至少一個 {1,}
+        ? 0或1 {0,1}
+        * 任意
+
+        /* 規則開頭
+        $/ 規則結尾
+      */
+      let regexp = new RegExp(/a|b|c/);
+      console.log("a|b|c");
+      console.log(regexp.test("abc")); //true
+      console.log(regexp.test("def")); //false
+
+      regexp = new RegExp(/[abc]/);
+      console.log("[abc]");
+      console.log(regexp.test("abc"));
+      console.log(regexp.test("def"));
+
+      regexp = new RegExp(/[^abc]/);
+      console.log("[^abc]");
+      console.log(regexp.test("abc"));
+      console.log(regexp.test("def"));
+
+      regexp = new RegExp(/[a-z]/);
+      console.log("[a-z]");
+      console.log(regexp.test("abc"));
+      console.log(regexp.test("123"));
+
+      regexp = new RegExp(/[0-9]/);
+      console.log("[0-9]");
+      console.log(regexp.test("abc"));
+      console.log(regexp.test("123"));
+
+      regexp = new RegExp(/ab{3}/);
+      console.log("ab{3}");
+      console.log(regexp.test("abbbb")); //true
+      console.log(regexp.test("aaa132"));
+
+      regexp = new RegExp(/ab{1,3}c/);
+      console.log("ab{1,3}c");
+      console.log(regexp.test("abc")); //true
+      console.log(regexp.test("abbc")); //true
+      console.log(regexp.test("abbbc")); //true
+      console.log(regexp.test("abbbbbc")); //false
+
+      regexp = new RegExp(/ab+c/);
+      console.log("ab+c");
+      console.log(regexp.test("abc")); //true
+      console.log(regexp.test("abbc")); //true
+      console.log(regexp.test("abbbc")); //true
+      console.log(regexp.test("acc")); //false
+
+      regexp = new RegExp(/ab?c/);
+      console.log("ab?c");
+      console.log(regexp.test("abc"));
+
+      regexp = new RegExp(/ab*c/);
+      console.log("ab*c");
+      console.log(regexp.test("abc"));
+
+      //台灣手機號碼
+      let regexpTwPhone = new RegExp(/^09[0-9]{8}$/);
+      console.log("09[0-9]{8}");
+      console.log(regexpTwPhone.test("0912345678"));
+
+      //身分證  1:男 2:女 8:居留證(男) 9:居留證(女)
+      let regexpTwID = new RegExp(/^[A-Z][1289][0-9]{8}$/);
+      console.log("");
+      console.log(regexpTwID.test("F123456789"));
+    </script>
+  </body>
+</html>

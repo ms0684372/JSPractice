@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>String Number</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      let b1 = !true;
+      let b2 = !true;
+      let b3 = !true;
+      let b4 = !true;
+      let b5 = !true;
+      let b6 = true;
+
+      if (b1) {
+        let str = "hello javascript";
+        //和C#一樣 字串其實也算是陣列
+        //以hello為例
+        /*['h','e','l','l','o']*/
+        //length讀取字串長度
+        console.log(str.length);
+        console.log(str[1]); //e
+      }
+
+      //trim()去除前後空白 trimStart trimEnd
+      if (b2) {
+        let str2 = "    hello    ";
+        console.log(str2.trim());
+      }
+
+      //split()
+      //可以字串轉陣列
+      if (b3) {
+        let str3 = "abc,def,ghi,ljk";
+        let arr = str3.split(",");
+        console.log(arr);
+      }
+
+      /*
+        擷取字串
+        slice()
+          1. 參數 開始索引值(包含)
+          2. 參數 結束索引值(不包含)
+            可放-1 倒數算
+        substring()
+          1. 參數 開始索引值(包含)
+          2. 參數 結束索引值(不包含)
+            參數2不能放負號
+        substr()
+          1. 參數 開始索引值
+          2. 參數 擷取數量
+
+        hello javascript
+      */
+      if (b4) {
+        let str4 = "hello javascript";
+        console.log(str4.slice(1, 7)); //ello j
+        console.log(str4.slice(7, -1)); //avascrip
+        console.log(str4.substring(1, 7)); //ello j
+        console.log(str4.substr(1, 3)); //ell
+      }
+
+      //Number轉字串
+      if (b5) {
+        //1.tostring()
+        let value = 123;
+        console.log(`value:${value.toString()}`);
+
+        //2. String()
+        let value2 = 456;
+        console.log(`value:${String(value2)}`);
+
+        //3.number + ''
+        let value3 = 789;
+        value3 += "";
+        console.log(`value:${value3}`);
+      }
+
+      //字串轉Number
+      //1. Number()
+      /*
+        純數字字串number
+        非數字字串NaN
+      */
+      if (b6) {
+        let test = "1"; //1
+        let test2 = "a"; //NaN
+        let test3 = ""; //0
+        let test4 = " "; //0
+        let test5 = true; //1
+        let test6 = false; //0
+        let test7 = undefined; //NaN
+        let test8 = null; //0
+        console.log(Number(test));
+        console.log(Number(test2));
+        console.log(Number(test3));
+        console.log(Number(test4));
+        console.log(Number(test5));
+        console.log(Number(test6));
+        console.log(Number(test7));
+        console.log(Number(test8));
+
+        let css = "10px";
+        console.log(Number(css)); //NaN
+        //2. parseInt() parseFloat()
+        //取出有效數字
+        console.log(parseInt(css)); //10
+        console.log(css); //10px
+        let newCss = parseInt(css) + 10 + "px"; //20px 不加px 最後寫回css會錯
+
+        //3. 純術數字串 - 0
+        let value4 = "100";
+        console.log(value4 - 0); //就變成數字100了
+      }
+    </script>
+  </body>
+</html>

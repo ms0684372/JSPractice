@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Date Math</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      let bDate = !true;
+      let b2 = true;
+
+      //Date物件
+      if (bDate) {
+        //當前時間
+        let now = new Date();
+        console.log(now);
+
+        //指定時間
+        let endTime = new Date("2026/11/13 09:00:00");
+        console.log(endTime);
+        //星期幾
+        console.log(now.getDay());
+        //幾號
+        console.log(now.getDate());
+        //幾月0~11
+        console.log(now.getMonth());
+        //幾年
+        console.log(now.getFullYear());
+
+        //西元轉民國
+        function adToMingGuo(date) {
+          let origYear = date.getFullYear();
+          let mingGuo = origYear - 1911;
+          console.log(`西元:${origYear} 民國:${mingGuo}`);
+        }
+        adToMingGuo(now);
+      }
+
+      //Math物件
+      if (b2) {
+        console.log(Math.PI);
+        //四捨五入
+        console.log(Math.round(1.33));
+        //無條件取高
+        console.log(Math.ceil(1.33));
+        //無條件取低
+        console.log(Math.floor(1.33));
+
+        //random()隨機數0~1
+        console.log(Math.random());
+        //0~10
+        console.log(Math.round(Math.random() * 10));
+        //1~38
+        console.log(Math.round(Math.random() * 37) + 1);
+        //x~y
+        // Math.round(Math.random() * y - x) + x;
+
+        console.log(Math.max(99, 20, 9));
+        console.log(Math.min(99, 20, 9));
+        //指數
+        console.log(Math.pow(2, 10));
+        //平方根
+        console.log(Math.sqrt(4));
+      }
+    </script>
+  </body>
+</html>
