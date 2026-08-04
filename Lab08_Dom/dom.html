@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Dom 選擇器</h1>
+    </header>
+    <div class="container">
+      <button id="btn">button</button>
+      <ul>
+        <li>list</li>
+        <li>list</li>
+        <li>list</li>
+      </ul>
+
+      <input type="checkbox" name="checkBoxGroup" />a
+      <input type="checkbox" name="checkBoxGroup" />b
+      <input type="checkbox" name="checkBoxGroup" />c
+      <input type="checkbox" name="checkBoxGroup1" />a
+      <input type="checkbox" name="checkBoxGroup1" />b
+      <input type="checkbox" name="checkBoxGroup1" />c
+      <div class="target"></div>
+      <div class="target"></div>
+      <div class="target"></div>
+    </div>
+    <script>
+      // javascript code
+      // document.getElementById(id名稱) 單選選擇器  id是唯一值 所以只會抓到一個
+      let btn = document.getElementById("btn");
+      console.log(btn);
+
+      // document.getElementsByTagName(元素標籤)  複選選擇器
+      // HTMLCollection集合 元素節點  動態更新
+      let liList = document.getElementsByTagName("li");
+      console.log(liList);
+
+      //document.getElementsByName(name屬性名稱)  複選選擇器
+      //NodeList集合 元素節點 文字節點 屬性節點 靜態
+      let checkBoxGroup = document.getElementsByName("checkBoxGroup");
+      console.log(checkBoxGroup);
+
+      //document.getElementsByClassName(class名稱) 複選選擇器
+      // HTMLCollection集合 元素節點  動態更新
+      let divList = document.getElementsByClassName("target");
+      console.log(divList);
+
+      //效能較差 可能才差0.多多毫秒而已
+      //document.querySelector(css選擇器); 單選選擇器
+      //document.querySelector(css選擇器); 複選選擇器
+      //NodeList集合 元素節點 文字節點 屬性節點 靜態
+      console.log(document.querySelector("#btn"));
+      console.log(document.querySelectorAll("li"));
+      console.log(document.querySelectorAll(".target"));
+    </script>
+  </body>
+</html>
