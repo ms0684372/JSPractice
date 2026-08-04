@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>保留字 this</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      /*
+        this 指向一個物件
+        依照上下文來決定this是誰  (?)
+
+        情境        指向
+        全域環境    Window物件(全域物件)
+        函數        Window物件
+          一般函數  箭頭函數除外
+        物件方法    該物件
+        建構子      建立的實體
+        事件        該觸發元素
+        call/apply  參數指定元素
+      */
+      console.log(this); //Window
+      var name = "全域的name";
+      console.log(this.name);
+
+      function fun() {
+        console.log(this);
+        console.log(this.name);
+      }
+
+      fun(); //一樣是 Window
+
+      var obj = {
+        name: "gary",
+        sayName: fun, //指到上面的fun
+      };
+      obj.sayName(); //obj, gary
+
+      //一般函數 箭頭函數this差別
+      var obj2 = {
+        name: "object2",
+        print: function () {
+          console.log("print");
+          console.log(this); //object2
+          function printAgain() {
+            console.log("print again");
+            console.log(this); //window, 因為它算是由函式調用, 而非obj2
+          }
+          let printAnonymous = function () {
+            console.log("print Anonymous");
+            console.log(this); //window, 因為它算是由函式調用, 而非obj2
+          };
+
+          let printArrow = () => {
+            /*
+            箭頭函數沒有自己的this
+            會依照外部繼承 如果沒有window
+          */
+            console.log("print Arrow");
+            console.log(this); //obj2, 回推上一層 所以是obj2
+          };
+          printAgain();
+          printAnonymous();
+          printArrow();
+        },
+      };
+      obj2.print();
+    </script>
+  </body>
+</html>
