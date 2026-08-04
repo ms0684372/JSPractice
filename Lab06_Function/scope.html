@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>變數範圍</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      let b1 = !true;
+      let b2 = !true;
+      let b3 = !true;
+      let b4 = !true;
+      let b5 = !true;
+      let b6 = true;
+      let b99 = !true;
+
+      //ex1
+      if (b1) {
+        var scope = "全域";
+        if (true) {
+          var scope = "區域";
+        }
+        console.log(scope); //區域
+      }
+
+      //ex2
+      if (b2) {
+        var scope2 = "全域";
+        function getValue() {
+          var scope2 = "區域";
+          return scope2;
+        }
+        console.log(scope2); //全域
+        console.log(getValue()); //區域
+        console.log(scope2); //全域
+      }
+
+      //ex3
+      if (b3) {
+        var scope3 = "全域";
+        function getValue2() {
+          scope3 = "區域";
+          return scope3;
+        }
+        console.log(scope3); //全域
+      }
+
+      //ex4
+      if (b4) {
+        var value = 10;
+        function decrementValue(value) {
+          value--;
+          return value;
+        }
+        console.log(decrementValue(100)); //99
+        console.log(value); //10
+      }
+
+      //ex5
+      if (b5) {
+        var valueArr = [1, 2, 3, 4, 5];
+        function deleteElement(valueArr) {
+          //刪除最後一個元素
+          let p = valueArr.pop();
+          console.log(p);
+          return valueArr;
+        }
+        console.log(deleteElement(valueArr)); //1,2,3,4
+        console.log(valueArr); //1,2,3,4 傳址 所以物件本身也會被影響
+      }
+
+      //ex6 說明function ex3為什麼不建議
+      if (b6) {
+        var scope6 = "全域";
+        function checkScope() {
+          var scope6 = "區域";
+          //一般函數
+          var fun1 = function () {
+            return scope6;
+          };
+          console.log(fun1()); //區域
+          //Function 建構子構成
+          var fun2 = new Function("return scope6");
+          console.log(fun2()); //全域, 他不受控制 會影響到外部
+        }
+        checkScope();
+      }
+
+      //ex99
+      if (b99) {
+        var scope99 = "全域";
+        let funA = () => {
+          var scope99 = "區域";
+          return scope99;
+        };
+        console.log(scope99); //全域
+        console.log(funA()); //區域
+        console.log(scope99); //全域
+      }
+    </script>
+  </body>
+</html>
