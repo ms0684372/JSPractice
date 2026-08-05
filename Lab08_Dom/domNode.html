@@ -26,8 +26,12 @@
       <hr />
       <button id="btnAppend">新增元素append</button>
       <button id="btnPrepend">新增元素prepend</button>
-      <hr />
       <button id="btnRemove">刪除元素Remove</button>
+      <hr />
+      <button id="btnFindNext">尋訪元素nextElementSibling</button>
+      <button id="btnFindPrev">尋訪元素previousElementSibling</button>
+      <button id="btnFindParent">尋訪元素parentNode</button>
+      <button id="btnFindChildren">尋訪元素children childNodes</button>
     </div>
     <script>
       let btnTynGet = document.getElementById("btnTynGet");
@@ -91,7 +95,33 @@
       //Remove
       let btnRemove = document.getElementById("btnRemove");
       btnRemove.addEventListener("click", function () {
-        tyn.remove(); //直接刪掉tyn  ban不見
+        // tyn.remove(); //直接刪掉tyn  ban不見
+        ul.children[ul.children.length - 1].remove();
+      });
+
+      //Find Element 尋訪元素
+      let btnFindNext = document.getElementById("btnFindNext");
+      btnFindNext.addEventListener("click", () => {
+        let nextli = tyn.nextElementSibling;
+        nextli.textContent = "next";
+      });
+
+      let btnFindPrev = document.getElementById("btnFindPrev");
+      btnFindPrev.addEventListener("click", () => {
+        let prevLi = tyn.previousElementSibling;
+        prevLi.textContent = "prev";
+      });
+
+      let btnFindParent = document.getElementById("btnFindParent");
+      btnFindParent.addEventListener("click", () => {
+        let parentNode = tyn.parentNode;
+        console.log(parentNode);
+      });
+
+      let btnFindChildren = document.getElementById("btnFindChildren");
+      btnFindChildren.addEventListener("click", () => {
+        console.log(ul.children); //HTMLCollection集合 陣列
+        console.log(ul.childNodes); //NodeList集合 陣列
       });
     </script>
   </body>
