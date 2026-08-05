@@ -3,14 +3,31 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #fff;
 }
+
 header {
   background-color: black;
   color: yellow;
   padding: 20px; /*內距*/
   text-align: center; /*文字置中*/
 }
+
 .container {
   width: 90%;
   margin: auto;
   padding: 10px;
+}
+
+table {
+  width: 800px;
+  height: 400px;
+  background-color: lightblue;
+  margin: auto;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: pink;
 }

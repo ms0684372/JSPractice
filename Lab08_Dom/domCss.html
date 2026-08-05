@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+    <link rel="stylesheet" href="./domCss.css" />
+    <!-- <style>
+      .box.active {
+        background-color: lightgreen;
+      }
+    </style> -->
+  </head>
+  <body>
+    <header>
+      <h1>Dom Css控制樣式</h1>
+    </header>
+    <div class="container">
+      <button id="btn1">button1</button>
+      <button id="btn2">button2</button>
+      <button id="btnAdd">add</button>
+      <button id="btnRemove">remove</button>
+      <button id="btnToggle">toggle</button>
+      <hr />
+      <div class="box"></div>
+    </div>
+    <script>
+      //js code
+      /*
+        設定樣式
+        element.style.樣式名稱=樣式的值
+        他會修改行內標籤!  根據需求謹慎使用
+        有-號的style (像background-color) 改用駝峰式
+      */
+      let box = document.querySelector(".box");
+      let btn1 = document.getElementById("btn1");
+      btn1.addEventListener("click", () => {
+        box.style.transition = "0.5s";
+        box.style.width = "200px";
+        box.style.backgroundColor = "lightblue";
+      });
+
+      /*
+        讀取樣式
+        讀取的也是行內樣式
+      */
+      let btn2 = document.getElementById("btn2");
+      btn2.addEventListener("click", () => {
+        // console.log(box.style.width);  //目前沒設定 所以讀到的行內樣式為空白
+        let boxStyle = window.getComputedStyle(box);
+        console.log(boxStyle);
+        console.log(boxStyle.width);
+        let newCss = parseInt(boxStyle.width) + 100; //讀出來是字串 記得轉型!
+        box.style.width = newCss + "px"; //記得加回px !!!
+      });
+
+      /*
+        設定樣式2
+      */
+      let btnAdd = document.getElementById("btnAdd");
+      btnAdd.addEventListener("click", () => {
+        box.classList.add("active");
+      });
+
+      /*
+        移除樣式
+      */
+      let btnRemove = document.getElementById("btnRemove");
+      btnRemove.addEventListener("click", () => {
+        box.classList.remove("active");
+      });
+
+      /*
+        設定, 移除自動切換
+      */
+      let btnToggle = document.getElementById("btnToggle");
+      btnToggle.addEventListener("click", () => {
+        box.classList.toggle("active");
+      });
+    </script>
+  </body>
+</html>
