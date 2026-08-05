@@ -52,6 +52,27 @@
           <span id="tResult"></span>
         </label>
       </div>
+      <hr />
+      <select name="" id="selectGroup">
+        <option value="tpe">台北</option>
+        <option value="ntp">新北</option>
+        <option value="tyn">桃園</option>
+      </select>
+      <hr />
+      <input type="radio" name="radioGroup" value="A" />A
+      <input type="radio" name="radioGroup" value="B" />B
+      <input type="radio" name="radioGroup1" value="C" />C
+      <input type="radio" name="radioGroup1" value="D" />D
+      <br />
+      <button id="getRadioBtn">取得radio值</button>
+      <button id="setRadioBtn">設定radio值</button>
+      <hr />
+      <input type="checkbox" value="1" name="checkboxGroup" id="" />1
+      <input type="checkbox" value="2" name="checkboxGroup" id="" />2
+      <input type="checkbox" value="3" name="checkboxGroup" id="" />3
+      <br />
+      <button id="getCheckboxBtn">取得Checkbox值</button>
+      <button id="setCheckboxBtn">設定Checkbox值</button>
     </div>
 
     <script>
@@ -74,7 +95,7 @@
 
       //Credit Card
       let inputCredits = document.getElementsByClassName("inputCredit");
-      for (let i = 0; i < inputCredits.length; i++) {
+      for (let i = 0; i <script inputCredits.length; i++) {
         inputCredits[i].addEventListener("keyup", function () {
           this.value = this.value.replace(/[^0-9]/g, "");
           if (this.value.length == 4 && this.nextElementSibling !== null) {
@@ -102,6 +123,49 @@
       inputID.addEventListener("contextmenu", function (event) {
         console.log("aaa");
       });
+
+      //change
+      let selectGroup = document.getElementById("selectGroup");
+      console.log(123);
+      selectGroup.addEventListener("change", (e) => {
+        console.log(e.target.value);
+      });
+
+      //取得radio值
+      let getRadioBtn = document.getElementById("getRadioBtn");
+      getRadioBtn.addEventListener("click", () => {
+        let radioGroup = document.getElementsByName("radioGroup");
+        let rResult = null;
+        for (let radio of radioGroup) {
+          if (radio.checked) {
+            rResult = radio.value;
+          }
+        }
+        console.log(rResult);
+      });
+
+      //設定radio值
+      let setRadioBtn = document.getElementById("setRadioBtn");
+      setRadioBtn.addEventListener("click", () => {
+        setRadioValue("radioGroup", "A");
+      });
+
+      function setRadioValue(radioGroupName, valueName) {
+        console.log(radioGroupName);
+        let radioGroup = document.getElementsByName(radioGroupName);
+        console.log(radioGroup);
+        for (let radio of radioGroup) {
+          radio.checked = radio.value === valueName;
+        }
+      }
+
+      let getCheckboxBtn = document.getElementById("getCheckboxBtn");
+      getCheckboxBtn.addEventListener("click", () => {
+        let checkBoxGroup = document.getElementsByName("checkboxGroup");
+      });
+
+      let setCheckboxBtn = document.getElementById("setCheckboxBtn");
+      setCheckboxBtn.addEventListener("click", () => {});
     </script>
   </body>
 </html>
