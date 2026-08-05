@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>99乘法表</h1>
+    </header>
+    <div class="container">
+      <!-- html content -->
+      <table id="container99">
+        <caption>
+          九九乘法表
+        </caption>
+        <thead></thead>
+        <tbody id="containerBody"></tbody>
+      </table>
+    </div>
+    <script>
+      //js code
+      /*
+        被乘數 x 乘數 = 結果
+        一個tr代表一個大橫排, 代表被乘數
+        一個td代表一個欄位, 代表乘數
+      */
+      let containerBody = document.getElementById("containerBody");
+
+      for (let i = 1; i < 10; i++) {
+        let tr = document.createElement("tr");
+        containerBody.append(tr);
+
+        for (let j = 1; j < 10; j++) {
+          let td = document.createElement("td");
+          td.textContent = `${i}x${j}=${i * j}`;
+          tr.append(td);
+        }
+      }
+    </script>
+  </body>
+</html>
