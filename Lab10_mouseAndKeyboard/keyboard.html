@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Keyboard 鍵盤事件</h1>
+    </header>
+    <div class="container">
+      <input type="text" name="" id="input" placeholder="請輸入文字" />
+      <div id="target"></div>
+    </div>
+    <script>
+      // js code
+      // variables
+      let input = document.getElementById("input");
+      let target = document.getElementById("target");
+
+      /*先後順序:keydown -> keypress -> keyup
+        keyup (放開時觸發)
+        keydown (按下去時觸發)
+        keypress (按下去時觸發) 功能鍵 數字鍵 無法觸發
+      */
+      input.addEventListener("keyup", function (event) {
+        console.log("keyup");
+        //讀取元素屬性 element.value
+        // console.log(`${input.value}:${event.keyCode}`);
+        // target.textContent = input.value;
+      });
+
+      //keydown (按下去時觸發)
+      input.addEventListener("keydown", function (e) {
+        if (e.ctrlKey && e.altKey) {
+          console.log("ctrl + alt");
+        }
+
+        console.log("key down");
+      });
+
+      input.addEventListener("keypress", function (e) {
+        // console.log(this.value);
+        console.log("press");
+        target.textContent = this.value;
+      });
+    </script>
+  </body>
+</html>

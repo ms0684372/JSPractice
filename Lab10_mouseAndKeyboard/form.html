@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+    <style>
+      .inputCredit {
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Form 表單事件</h1>
+    </header>
+    <div class="container">
+      <input type="text" id="input" placeholder="請輸入" />
+      <hr />
+      <label for="input1">信用卡號:</label>
+      <input
+        type="text"
+        maxlength="4"
+        class="inputCredit"
+        placeholder="請輸入"
+        name="input1"
+      />
+      <input
+        type="text"
+        maxlength="4"
+        class="inputCredit"
+        placeholder="請輸入"
+      />
+      <input
+        type="text"
+        maxlength="4"
+        class="inputCredit"
+        placeholder="請輸入"
+      />
+      <input
+        type="text"
+        maxlength="4"
+        class="inputCredit"
+        placeholder="請輸入"
+      />
+      <hr />
+      <div>
+        <label for="">
+          身分證字號:
+          <input type="text" name="" maxlength="10" id="inputID" />
+          <span id="tResult"></span>
+        </label>
+      </div>
+    </div>
+
+    <script>
+      //js code
+      let input = document.getElementById("input");
+      input.focus();
+      /*
+        focus
+        blur
+      */
+      //focus
+      input.addEventListener("focus", () => {
+        console.log("focus");
+      });
+
+      //blur
+      input.addEventListener("blur", () => {
+        console.log("blur");
+      });
+
+      //Credit Card
+      let inputCredits = document.getElementsByClassName("inputCredit");
+      for (let i = 0; i < inputCredits.length; i++) {
+        inputCredits[i].addEventListener("keyup", function () {
+          this.value = this.value.replace(/[^0-9]/g, "");
+          if (this.value.length == 4 && this.nextElementSibling !== null) {
+            this.nextElementSibling.focus();
+          }
+        });
+      }
+
+      //blur practice
+      let inputID = document.getElementById("inputID");
+      let tResult = document.getElementById("tResult");
+      inputID.addEventListener("blur", function () {
+        let reg = new RegExp(/[A-Z][1289][0-9]{8}/);
+        tResult.textContent = reg.test(this.value) ? "成功" : "失敗";
+      });
+
+      inputID.addEventListener("keydown", function (event) {
+        console.log(`key:${event.key} keyCode:${event.keyCode}`);
+        if (event.keyCode === 13) {
+          console.log(123);
+          inputID.blur();
+        }
+      });
+
+      inputID.addEventListener("contextmenu", function (event) {
+        console.log("aaa");
+      });
+    </script>
+  </body>
+</html>
