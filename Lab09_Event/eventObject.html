@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Event Object</h1>
+    </header>
+    <div class="container">
+      <textarea name="" id="textArea"></textarea>
+    </div>
+    <script>
+      //js code
+      /*
+        event物件
+          事件發生所有資訊和屬性都封裝在event物件裡面
+          pageX, pageY
+          offsetX, offsetY
+          target:目前觸發的對象
+      */
+      let textArea = document.getElementById("textArea");
+
+      textArea.addEventListener("mousemove", function (event) {
+        console.log(event.target);
+        // console.log(`x:${event.pageX}, y:${event.pageY}`);
+      });
+
+      /*
+        用箭頭函式的話 this會變成window喔
+        所以真的要的話, 得抓event.target
+      */
+      // textArea.addEventListener("mousemove", (event) => {
+      //   console.log(this); //window
+      // });
+    </script>
+  </body>
+</html>
