@@ -1,0 +1,14 @@
+.out {
+  height: 250px;
+  width: 40%;
+  background-color: lightgreen;
+  float: left;
+  margin: 0 15px;
+}
+
+.in {
+  width: 60%;
+  height: 60%;
+  background-color: lightblue;
+  margin: 10px auto;
+}

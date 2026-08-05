@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+    <link rel="stylesheet" href="./mouse.css" />
+  </head>
+  <body>
+    <header>
+      <h1>滑鼠事件 Mouse Event</h1>
+    </header>
+    <div class="container">
+      <button id="btn">bbb biu biu biu</button>
+      <hr />
+      <div class="out overout">
+        <span id="overoutSpan">move your mouse</span>
+        <div class="in"></div>
+      </div>
+      <div class="out enterleave">
+        <span id="enterleaveSpan">move your mouse</span>
+        <div class="in"></div>
+      </div>
+      <hr />
+      <div>
+        <h3 id="test1">test1</h3>
+        <hr />
+        <h3 class="h3Group">testGroup</h3>
+        <h3 class="h3Group">testGroup</h3>
+        <h3 class="h3Group">testGroup</h3>
+        <h3 class="h3Group">testGroup</h3>
+      </div>
+    </div>
+    <script>
+      //js code
+
+      let btn = document.getElementById("btn");
+      /*
+        click(前面章節已經用過很多次了 不贅述)
+      */
+
+      /*
+        dblclick (連點兩下)
+      */
+      btn.addEventListener("dblclick", () => {
+        console.log("double click");
+      });
+
+      /*
+        contextmenu (右鍵)
+      */
+      btn.addEventListener("contextmenu", () => {
+        console.log("right click");
+      });
+
+      /*
+        mouseup (滑鼠放開)
+      */
+      btn.addEventListener("mouseup", () => {
+        console.log("on mouse up");
+      });
+
+      /*
+        mousemove 在物件內移動就一直觸發
+      */
+
+      /*
+        滑鼠移入移出
+        mouseover
+        mouseout
+        有子元素時:
+          外->本    +1
+          本->子    +1
+          子->本體  +1
+
+        
+          
+        mouseenter
+        mouseleave
+        有子元素時:
+          外->本    +1
+          本->子    +0
+          子->本體  +0
+
+
+          hover是css的偽事件
+      */
+      let countOverout = 0;
+      document.querySelector(".overout").addEventListener("mouseover", () => {
+        countOverout++;
+        document.getElementById("overoutSpan").textContent =
+          `mouse over:${countOverout}`;
+      });
+
+      let countEnterLeave = 0;
+      document
+        .querySelector(".enterleave")
+        .addEventListener("mouseenter", () => {
+          countEnterLeave++;
+          document.getElementById("enterleaveSpan").textContent =
+            `enter leave:${countEnterLeave}`;
+        });
+
+      //練習
+      //移入移出時換色 (單個)
+      let test1 = document.getElementById("test1");
+      let origColor = window.getComputedStyle(test1).color;
+      console.log(origColor);
+      test1.addEventListener("mouseenter", () => {
+        test1.style.color = "lightblue";
+      });
+
+      test1.addEventListener("mouseleave", () => {
+        test1.style.color = origColor;
+      });
+
+      //移入移出時換色 (多個)
+      let h3Group = document.getElementsByClassName("h3Group");
+      console.log(h3Group);
+      for (let a of h3Group) {
+        a.addEventListener("mouseenter", () => {
+          a.style.color = "lightblue";
+        });
+
+        a.addEventListener("mouseleave", () => {
+          a.style.color = origColor;
+        });
+      }
+    </script>
+  </body>
+</html>
