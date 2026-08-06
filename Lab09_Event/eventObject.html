@@ -9,9 +9,34 @@
   <body>
     <header>
       <h1>Event Object</h1>
+      <style>
+        #div {
+          width: 500px;
+          height: 100px;
+          padding: 10px;
+          border: 1px solid black;
+          background-color: lightgreen;
+        }
+        p {
+          background-color: lightcoral;
+        }
+        span {
+          background-color: lightblue;
+        }
+      </style>
     </header>
     <div class="container">
       <textarea name="" id="textArea"></textarea>
+      <hr />
+      <div id="div">
+        this is div element.
+        <p>
+          this is p element.
+          <span>this is span element.</span>
+        </p>
+      </div>
+      <hr />
+      <a href="https://learn.microsoft.com/zh-tw/dotnet/csharp/">C# learn</a>
     </div>
     <script>
       //js code
@@ -36,6 +61,37 @@
       // textArea.addEventListener("mousemove", (event) => {
       //   console.log(this); //window
       // });
+
+      /*
+        取消氣泡事件 event.stopPropagation()
+        氣泡事件是什麼: 若父元素和子元素都綁定相同事件, 
+        子元素觸發時, 父元素也會一併觸發.
+      */
+      let div = document.getElementById("div");
+      div.addEventListener("click", () => {
+        console.log("click on div");
+      });
+
+      let pTag = document.querySelector("p");
+      pTag.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("click on p Tag");
+      });
+
+      let spanTag = document.querySelector("span");
+      spanTag.addEventListener("click", (e) => {
+        e.stopPropagation();
+        console.log("click on span Tag");
+      });
+
+      /*
+        取消預設事件 event.preventDefault()
+      */
+      let aLink = document.querySelector("a");
+      aLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        console.log(`default${event.type} prevent default`);
+      });
     </script>
   </body>
 </html>

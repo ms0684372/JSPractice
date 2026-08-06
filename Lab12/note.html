@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <style>
+      body {
+        font-size: 17px;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #fff;
+      }
+      header {
+        background-color: black;
+        color: yellow;
+        /* 內距 */
+        padding: 20px;
+        /* 文字置中 */
+        text-align: center;
+      }
+      .container {
+        width: 90%;
+        margin: auto;
+        padding: 10px;
+      }
+      table {
+        width: 600px;
+        background-color: lightblue;
+        border: 2px solid black;
+        margin: 5px;
+        text-align: center;
+      }
+      td {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Notepad</h1>
+    </header>
+    <div class="container">
+      <div>
+        <input type="text" placeholder="請輸入姓名" id="inputName" />
+        <input type="text" placeholder="請輸入內容" id="inputContent" />
+        <button id="btnAdd">add</button>
+        <button id="btnPrint">Print</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>內容</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="contentList">
+          <!-- <tr>
+            <td>name</td>
+            <td>content</td>
+            <td><button>修改</button> <button>刪除</button></td>
+          </tr> -->
+        </tbody>
+      </table>
+    </div>
+    <script>
+      //js code
+      /*
+        1.新增功能
+          使用者會在input標籤輸入完姓名跟內容後按下add button
+          新增資料到tbody
+        2.修改功能
+          按下修改, 跳出prompt 更改記事內容
+        3.刪除功能
+          按下刪除, 跳個警告視窗 是否刪除
+            確認就刪, 反之不刪
+      */
+
+      let contentList = document.getElementById("contentList");
+      let inputName = document.getElementById("inputName");
+      let inputContent = document.getElementById("inputContent");
+      let btnAdd = document.getElementById("btnAdd");
+      btnAdd.onclick = () => {
+        let name = inputName.value.trim();
+        let content = inputContent.value.trim();
+        inputName.value = name;
+        inputContent.content = content;
+
+        if (name === null || name === "") {
+          alert("請輸入姓名");
+          inputName.focus();
+          return;
+        }
+
+        if (content === null || content === "") {
+          alert("請輸入內容");
+          inputContent.focus();
+          return;
+        }
+
+        let trField = document.createElement("tr");
+        let tdName = document.createElement("td");
+        tdName.textContent = name;
+
+        let tdContent = document.createElement("td");
+        tdContent.textContent = content;
+
+        let tdBtns = document.createElement("td");
+        let btnEdit = document.createElement("Button");
+        btnEdit.textContent = "修改";
+        btnEdit.onclick = function () {
+          Edit(tdContent);
+        };
+        let btnDelete = document.createElement("Button");
+        // btnDelete.textContent = "刪除";
+        btnDelete.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        btnDelete.onclick = function () {
+          Delete(trField);
+        };
+
+        //append elements
+        contentList.append(trField);
+        trField.append(tdName, tdContent, tdBtns);
+        tdBtns.append(btnEdit);
+        tdBtns.append(btnDelete);
+
+        //clear input value
+        inputName.value = "";
+        inputContent.value = "";
+
+        function Edit(td) {
+          let result = prompt("修改內容", td.textContent);
+          if (result === null) {
+            return;
+          }
+
+          if (result === "") {
+            alert("修改失敗, 內容為空");
+            return;
+          }
+          td.textContent = result;
+        }
+
+        function Delete(tr) {
+          if (confirm("真的要刪除嗎?")) {
+            tr.remove();
+          }
+        }
+      };
+
+      document.getElementById("btnPrint").onclick = () => {
+        let children = contentList.children;
+        console.log(children);
+        for (let child of children) {
+          console.log(child.order);
+        }
+        // children.forEach((element) => {
+        //   console.log(element.order);
+        // });
+      };
+    </script>
+  </body>
+</html>

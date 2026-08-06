@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+    <style>
+      .Box {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>瀏覽器物件 BOM</h1>
+    </header>
+    <div class="container">
+      <button id="btnAlert">alert</button>
+      <button id="btnConfirm">confirm</button>
+      <button id="btnPrompt">prompt</button>
+      <hr />
+      <button id="btnInterval">Set interval</button>
+      <hr />
+      <button id="btnSlideUp">Slide Up</button>
+      <button id="btnSlideDown">Slide Down</button>
+      <div class="Box" id="Box"></div>
+      <hr />
+      <label for="inputKey">key:</label>
+      <input type="text" name="inputKey" id="inputKey" />
+      <label for="inputValue">value:</label>
+      <input type="text" name="inputValue" id="inputValue" />
+      <button id="btnSave">儲存</button>
+      <br /><br />
+      <label for="inputRead">key:</label>
+      <input type="text" name="inputRead" id="inputRead" />
+      <span id="spanRead"></span>
+      <br /><br />
+      <label for="inputDelete">key:</label>
+      <input type="text" name="inputDelete" id="inputDelete" />
+      <br /><br />
+      <button id="btnClear">清除</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      //js code
+      /*
+        BOM瀏覽器物件
+          window物件
+            window.console.log()
+            window.getComputedStyle() 取得當前元素樣式
+            window.alert('哩欸message') 彈出警告視窗
+            window.confirm('字串') 跳出選擇類型警告視窗 回傳boolean
+            window.prompt('字串', 預設文字) 跳出輸入類型警告視窗
+              確認: 回傳字串
+              取消: 回傳null
+            window.setInterval 開啟定時器
+              可以設定一個函數 經過一段時間執行一次
+              1. 參數 執行函數
+              2. 參數 執行秒數 ms
+            window.setInterval 關閉定時器
+            window.setTimeout 定時器 只會執行一次
+            window.console.time('計時器名稱')開啟
+            window.console.timeEnd('計時器名稱')關閉
+            window.localStorage 暫存瀏覽器的物件 值使用者清除
+              setItem(key, value) 儲存
+              getItem(key) 讀取
+              removeItem(key) 移除
+              clear() 清掉全部
+          history物件   瀏覽器有關歷史訊息
+          location物件  瀏覽器url有關資訊
+          navigator物件 當前瀏覽器相關資訊
+      */
+
+      //alert
+      document.getElementById("btnAlert").addEventListener("click", () => {
+        // alert("I'm so cute.");
+        Swal.fire({
+          title: "Dark theme",
+          theme: "dark",
+        });
+      });
+
+      //confirm
+      document.getElementById("btnConfirm").addEventListener("click", () => {
+        if (confirm("測試成功嗎")) {
+          console.log("成功");
+        } else {
+          console.log("失敗");
+        }
+      });
+
+      //prompt
+      document.getElementById("btnPrompt").onclick = () => {
+        let result = prompt("你是誰?", "預設文字");
+        console.log(`歡迎光臨~${result}`);
+      };
+
+      //interval
+      document.getElementById("btnInterval").onclick = () => {
+        let count = 0;
+        let interval = setInterval(function () {
+          count++;
+          console.log(count);
+          if (count > 10) {
+            clearInterval(interval);
+          }
+        }, 1000);
+        console.log(interval);
+      };
+
+      //set Timeout
+      setTimeout(function () {
+        console.log("說個嗨");
+      }, 3000);
+
+      /*
+        計時器
+        console.time('計時器名稱')開啟
+        console.timeEnd('計時器名稱')關閉
+      */
+      console.time("MyTest");
+      Math.pow(2, 1000000);
+      console.timeEnd("MyTest");
+
+      /*
+        window.localStorage 暫存瀏覽器的物件 值使用者清除
+          setItem(key, value) 儲存
+          getItem(key) 讀取
+          removeItem(key) 移除
+          clear() 清掉全部
+      */
+      document.getElementById("btnSave").onclick = () => {
+        let key = document.getElementById("inputKey").value;
+        let value = document.getElementById("inputValue").value;
+
+        localStorage.setItem(key, value);
+        alert("保存成功");
+      };
+
+      document.getElementById("inputRead").onblur = (e) => {
+        console.log(`Read:${e.target.value}`);
+        let value = localStorage.getItem(e.target.value);
+        console.log(`Read:${value}`);
+        document.getElementById("spanRead").textContent =
+          value === null ? "not found" : value;
+      };
+
+      document.getElementById("inputDelete").onblur = (e) => {
+        console.log(`Del:${e.target.value}`);
+        localStorage.removeItem(e.target.value);
+        alert("刪除成功");
+      };
+
+      document.getElementById("btnClear").onclick = () => {
+        localStorage.clear();
+        alert("刪除全部囉");
+      };
+
+      /*
+        Slide動畫效果
+      */
+      let box = document.getElementById("Box");
+      let boxStyle = window.getComputedStyle(box);
+      const animTime = 25;
+
+      let timer;
+      document.getElementById("btnSlideUp").onclick = () => {
+        timer = setInterval(slideBoxUp, animTime);
+      };
+
+      document.getElementById("btnSlideDown").onclick = () => {
+        timer = setInterval(slideBoxDown, animTime);
+      };
+
+      function slideBoxUp() {
+        let height = parseInt(boxStyle.height);
+
+        height -= 5;
+        if (height < 0) {
+          height = 0;
+          clearInterval(timer);
+        }
+        box.style.height = height + "px";
+      }
+
+      function slideBoxDown() {
+        let height = parseInt(boxStyle.height);
+
+        height += 5;
+        if (height > 100) {
+          height = 100;
+          clearInterval(timer);
+        }
+        box.style.height = height + "px";
+      }
+    </script>
+  </body>
+</html>

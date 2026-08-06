@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Promise物件</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      //ex1
+      let f1 = () => {
+        console.log(1);
+        setTimeout(() => {
+          console.log(2);
+        });
+        console.log(3);
+      };
+
+      // f1();
+
+      let printWord = function (word) {
+        let time = Math.random() * 1000;
+        setTimeout(() => {
+          console.log(word);
+        }, time);
+      };
+
+      let f2 = () => {
+        printWord("a");
+        printWord("b");
+        printWord("c");
+      };
+      // f2();
+
+      //ex2
+      let printWord2 = function (word, fn) {
+        let time = Math.random() * 1000;
+        setTimeout(() => {
+          console.log(word);
+          if (fn) {
+            fn();
+          }
+        }, time);
+      };
+
+      let f3 = () => {
+        printWord2("a", function () {
+          printWord2("b", function () {
+            printWord2("c", function () {
+              printWord2("d", function () {
+                printWord2("e");
+              });
+            });
+          });
+        });
+      };
+      // f3();
+
+      /*
+        ES6物件
+        Promise物件
+          new Promise((resolve, reject)=>{
+            resolve('成功');
+            reject('失敗');
+          })
+          .then() 處理成功
+          .catch() 處理失敗
+      */
+      let promisePrintWord = function (word) {
+        return new Promise((resolve, reject) => {
+          let time = Math.random() * 1000;
+          setTimeout(() => {
+            console.log(word);
+            resolve();
+          }, time);
+        });
+      };
+
+      promisePrintWord("a2")
+        .then(() => promisePrintWord("b2"))
+        .then(() => promisePrintWord("c2"))
+        .then(() => promisePrintWord("d2"))
+        .then(() => promisePrintWord("e2"));
+    </script>
+  </body>
+</html>

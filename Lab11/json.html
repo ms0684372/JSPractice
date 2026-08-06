@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/lab.css" />
+  </head>
+  <body>
+    <header>
+      <h1>JSON</h1>
+    </header>
+    <div class="container"></div>
+    <script>
+      /*
+        JSON
+        屬性名稱要加霜引號 "屬性名稱"
+        字串, number, 陣列[], 物件{}, boolean
+        JSON.parse()
+          JSON資料格式轉為javascript物件
+        JSON.stringify()
+          javascript物件轉為JSON資料格式
+      */
+      let json = `{
+            "name": "Madame Uppercut",
+            "age": 39,
+            "secretIdentity": "Jane Wilson",
+            "powers": ["Million tonne punch",
+                    "Damage resistance","Superhuman reflexes"]
+          }
+          `;
+      let obj1 = JSON.parse(json);
+      console.log(obj1);
+
+      obj1.name = "apple";
+      obj1.age = 20;
+      let json1 = JSON.stringify(obj1);
+      console.log(json1);
+
+      let bag = [
+        {
+          itemName: "apple",
+          quantity: 20,
+        },
+        {
+          itemName: "orange",
+          quantity: 10,
+        },
+        {
+          itemName: "pen",
+          quantity: 35,
+        },
+      ];
+
+      let jValue1 = JSON.stringify(bag);
+      console.log(jValue1);
+
+      let jArr = JSON.parse(jValue1);
+      console.log(jArr);
+
+      //複製 解構賦值
+      let arr = ["a", "b", "c"];
+      let arrcopy = [...arr];
+      console.log(arr);
+      console.log(arrcopy);
+      console.log(arr == arrcopy);
+
+      //淺層複製
+      let arr2 = [
+        {
+          itemName: "apple",
+          quantity: 20,
+        },
+        {
+          itemName: "orange",
+          quantity: 10,
+        },
+        {
+          itemName: "pen",
+          quantity: 35,
+        },
+      ];
+      let arr2copy = [...arr2];
+      console.log(arr2);
+      console.log(arr2copy);
+      console.log("=========================");
+      arr2copy[0].itemName = "jerry";
+      console.log(arr2copy);
+      console.log(arr2); //會變喔
+
+      //深層複製
+      let arr3 = [
+        {
+          itemName: "apple",
+          quantity: 20,
+        },
+        {
+          itemName: "orange",
+          quantity: 10,
+        },
+        {
+          itemName: "pen",
+          quantity: 35,
+        },
+      ];
+      let arr3copy = JSON.parse(JSON.stringify(arr3));
+      console.log(arr3);
+      console.log(arr3copy);
+      arr3copy[0].itemName = "jerry3"; //欸嘿嘿 分開了
+      console.log(arr3);
+      console.log(arr3copy);
+    </script>
+  </body>
+</html>
